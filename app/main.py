@@ -8,18 +8,15 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-
-    for person in people:
-        person_list.append(Person(person["name"], person["age"]))
+    person_list = [Person(p["name"], p["age"]) for p in people]
 
     for person in people:
         for key, value in person.items():
             if key == "wife" and value is not None:
-                persona_objetivo = Person.people[person["name"]]
-                persona_objetivo.wife = Person.people[value]
+                person_obj = Person.people[person["name"]]
+                person_obj.wife = Person.people[value]
             elif key == "husband" and value is not None:
-                persona_objetivo = Person.people[person["name"]]
-                persona_objetivo.husband = Person.people[value]
+                person_obj = Person.people[person["name"]]
+                person_obj.husband = Person.people[value]
 
     return person_list
